@@ -34,14 +34,17 @@ public class MemberDAO {
 		try {
 			pstmt = conn.prepareStatement("SELECT * FROM MEMBERS");
 			ResultSet rs = pstmt.executeQuery();
-			Member m = new Member();
-			m.setId(rs.getInt("id"));
-			m.setUsername(rs.getString("username"));
-			m.setCompany(rs.getString("company"));
-			m.setBirthday(rs.getDate("birthday"));
-			m.setEmail(rs.getString("email"));
 			
-			memberlist.add(m);
+			while(rs.next()) {
+				Member m = new Member();
+				m.setId(rs.getInt("id"));
+				m.setUsername(rs.getString("username"));
+				m.setCompany(rs.getString("company"));
+				m.setBirthday(rs.getDate("birthday"));
+				m.setEmail(rs.getString("email"));
+			
+				memberlist.add(m);
+			}
 			
 		}catch(Exception e) {
 			
